@@ -175,7 +175,7 @@ db.listingsAndReviews.find({
     'name':1, 'beds':1
 })
 ```
-*
+* Find listings with less than 6 beds
 ```
 db.listingsAndReviews.find({
     'beds': {
@@ -195,4 +195,55 @@ db.listingsAndReviews.find({
 }, {
     'name':1, 'beds':1
 })
+```
+
+
+```
+db.companies.find({
+    'founded_year':2006
+}, {
+    'founded_year':1, 'name':1
+}).pretty()
+```
+```
+db.companies.find({
+    'founded_year':{
+        '$gt':2000
+    }
+
+}, {
+    'founded_year':1, 'name':1
+}).pretty()
+```
+```
+db.companies.find({
+    'founded_year': {
+        '$gt':1900,
+        '$lt':2000
+    }
+}, {'name':1, 'founded_year':1}).pretty()
+```
+
+```
+db.companies.find({},
+{'name':1, 'acquisition.price_amount':1}).pretty().limit(10)
+```
+
+```
+db.companies.find({
+    'acquisition.price_amount':{
+        '$gt':100000000
+    }
+}, {
+    'name':1, 'acquisition.price_amount':1, 'acquisition.price_currency_code':1
+}).pretty()
+```
+
+```
+db.companies.find({
+    'acquisition.price_amount':{
+        '$gt':100000000
+    },
+    'acquisition.price_currency_code':'USD'
+}, {'name':1, 'acquisition.price_currency_code':1, 'acquisition.price_amount':1}).pretty()
 ```
