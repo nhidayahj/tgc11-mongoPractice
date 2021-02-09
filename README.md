@@ -1,6 +1,6 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome USER_NAME,
+Welcome nhidayahj,
 
 This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
 
@@ -43,3 +43,154 @@ We continually tweak and adjust this template to help give you the best experien
 --------
 
 Happy coding!
+
+## To show all databases in mongoDB:
+```
+show databases;
+```
+
+## To switch to the specific database:
+```
+use <name_of_database>;
+```
+
+## MUST always show collections after selecting specific database:
+```
+show collections;
+```
+
+## check the currently selected database
+```
+db
+```
+
+## find all documents from a collection:
+
+## showall
+```
+db.<name_of_collection>.find()
+```
+
+## limi the number of documents found
+```
+db.<name_of_collection>.find().limit(10)
+```
+
+## format the output nicely with .pretty()
+```
+db.<name_of_collection>.find().pretty().limit(10)
+db.listingsAndReviews.find().pretty().limit(10)
+```
+## limit.() must always be LAST
+
+## Projecting 
+* show only certains keys from the documents
+```
+db.listingsAndReviews.find({}, {
+    'name':1,
+    'summary':1,
+    'address':1
+}).pretty()
+```
+
+### Projecting a sub-document 
+```
+db.listingsAndReviews.find({}, {
+    'name':1,
+    'summary':1,
+    'address.street':1,
+    'address.country':1
+}).pretty()
+```
+
+### Searching docuemtns by criteria
+* find all the listings that has exactly 2 beds
+```
+db.listingsAndReviews.find({
+    'beds':2
+}, {
+    'name':1,'address':1, 'date':1
+}).pretty()
+```
+
+* find all the listings with exactly 2 beds and has exactly 2 bedrooms
+```
+db.listingsAndReviews.find({
+    'beds':2,
+    'bedrooms':2
+}, {
+    'name':1, 'address.country':1, 'beds':1, 'bedrooms':1
+}).pretty()
+```
+
+* find by country
+```
+db.listingsAndReviews.find({
+    'address.country':'Brazil'
+}, {
+    'name':1, 'address.country':1, 'beds':1, 'bedrooms':1
+}).pretty()
+```
+
+* Count number of results
+```
+db.listingsAndReviews.find({
+    'address.country':'Brazil'
+}, {
+    'name':1, 'address.country':1, 'beds':1, 'bedrooms':1
+}).count()
+```
+
+* Find only listings with only 2 beds, 2 bedrooms, and in Brazil
+```
+db.listingsAndReviews.find({
+    'address.country':'Brazil',
+    'bedrooms':2,
+    'beds':2
+}, {
+    'name':1, 'address.country':1, 'beds':1, 'bedrooms':1
+}).pretty()
+```
+
+## Find by Inequality
+* Find all listings that have greater than 3 beds 
+```
+db.listingsAndReviews.find({
+    'beds': {
+        '$gt':3
+    }
+}, {
+    'name':1, 'beds':1
+})
+```
+* FInd all listings that has beds with greater than or equal to 3 
+```
+db.listingsAndReviews.find({
+    'beds': {
+        '$gte':3
+    }
+}, {
+    'name':1, 'beds':1
+})
+```
+*
+```
+db.listingsAndReviews.find({
+    'beds': {
+        '$lt':6
+    }
+}, {
+    'name':1, 'beds':1
+})
+```
+* Find listings that have between 3 to 6 beds:
+```
+db.listingsAndReviews.find({
+    'beds': {
+        '$gte':3,
+        '$lte':6
+    }
+}, {
+    'name':1, 'beds':1
+})
+```
