@@ -44,6 +44,8 @@ We continually tweak and adjust this template to help give you the best experien
 
 Happy coding!
 
+# Commands to enter in Terminal
+
 ## To show all databases in mongoDB:
 ```
 show databases;
@@ -66,12 +68,12 @@ db
 
 ## find all documents from a collection:
 
-## showall
+## To show all documents
 ```
 db.<name_of_collection>.find()
 ```
 
-## limi the number of documents found
+## limit the number of documents found
 ```
 db.<name_of_collection>.find().limit(10)
 ```
@@ -81,7 +83,7 @@ db.<name_of_collection>.find().limit(10)
 db.<name_of_collection>.find().pretty().limit(10)
 db.listingsAndReviews.find().pretty().limit(10)
 ```
-## limit.() must always be LAST
+* limit.() must always be LAST
 
 ## Projecting 
 * show only certains keys from the documents
@@ -103,7 +105,7 @@ db.listingsAndReviews.find({}, {
 }).pretty()
 ```
 
-### Searching docuemtns by criteria
+### Searching documents by criteria
 * find all the listings that has exactly 2 beds
 ```
 db.listingsAndReviews.find({
@@ -123,7 +125,7 @@ db.listingsAndReviews.find({
 }).pretty()
 ```
 
-* find by country
+* Finding by Country
 ```
 db.listingsAndReviews.find({
     'address.country':'Brazil'
@@ -132,7 +134,7 @@ db.listingsAndReviews.find({
 }).pretty()
 ```
 
-* Count number of results
+* Count total number of results with .count()
 ```
 db.listingsAndReviews.find({
     'address.country':'Brazil'
@@ -141,7 +143,7 @@ db.listingsAndReviews.find({
 }).count()
 ```
 
-* Find only listings with only 2 beds, 2 bedrooms, and in Brazil
+* Find  listings with only 2 beds, 2 bedrooms, and in Brazil -- set the criteria 
 ```
 db.listingsAndReviews.find({
     'address.country':'Brazil',
@@ -152,7 +154,7 @@ db.listingsAndReviews.find({
 }).pretty()
 ```
 
-## Find by Inequality
+## Find by Inequality using the special character $ 
 * Find all listings that have greater than 3 beds 
 ```
 db.listingsAndReviews.find({
@@ -163,7 +165,7 @@ db.listingsAndReviews.find({
     'name':1, 'beds':1
 })
 ```
-* FInd all listings that has beds with greater than or equal to 3 
+* Find all listings that has beds with greater than or equal to 3 
 ```
 db.listingsAndReviews.find({
     'beds': {
