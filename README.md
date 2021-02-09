@@ -198,6 +198,7 @@ db.listingsAndReviews.find({
 ```
 
 ## mongoDB Practice Questions: 
+1. 
 ```
 db.companies.find({
     'founded_year':2006
@@ -205,16 +206,18 @@ db.companies.find({
     'founded_year':1, 'name':1
 }).pretty()
 ```
+2. 
 ```
 db.companies.find({
     'founded_year':{
         '$gt':2000
     }
-
 }, {
     'founded_year':1, 'name':1
 }).pretty()
 ```
+
+3.
 ```
 db.companies.find({
     'founded_year': {
@@ -226,24 +229,25 @@ db.companies.find({
 
 ```
 db.companies.find({},
-{'name':1, 'acquisition.price_amount':1}).pretty().limit(10)
+{'name':1, 'ipo':1}).pretty().limit(10)
 ```
 
 ```
 db.companies.find({
-    'acquisition.price_amount':{
+    'ipo.valuation_amount':{
         '$gt':100000000
     }
 }, {
-    'name':1, 'acquisition.price_amount':1, 'acquisition.price_currency_code':1
+    'name':1, 'ipo.valuation_amount':1, 'ipo.valuation_currency':1
 }).pretty()
 ```
 
 ```
 db.companies.find({
-    'acquisition.price_amount':{
+    'ipo.valuation_amount':{
         '$gt':100000000
     },
-    'acquisition.price_currency_code':'USD'
-}, {'name':1, 'acquisition.price_currency_code':1, 'acquisition.price_amount':1}).pretty()
+    'ipo.valuation_currency_code':'USD'
+}, {'name':1, 'ipo.valuation_currency_code':1, 'ipo.valuation_amount':1}).pretty()
 ```
+
