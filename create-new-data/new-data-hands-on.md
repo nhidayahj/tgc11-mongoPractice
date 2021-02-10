@@ -123,6 +123,7 @@ db.animals.insert({
 ```
 
 ### Push to the back of the tags array for Cookie 
+```
 db.animals.update({
     '_id': ObjectId("6023595e8e42018bfd96aced")
 }, {
@@ -130,6 +131,7 @@ db.animals.update({
         'tags':'good with kids'
     }
 })
+```
 
 ### To remove a certain item from a tag 
 * remove 'good with cats' 
