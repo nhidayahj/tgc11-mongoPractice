@@ -1,6 +1,8 @@
 ## Create a new database
 * Just use the 'use' keyword as if it exist 
-`use animal_shelter`
+```
+use animal_shelter
+```
 
 `This is the procedure how the database gets called by Mongo 
 will automatically save the new database when it has`
