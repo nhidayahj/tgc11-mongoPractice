@@ -219,7 +219,7 @@ db.animals.update({
 
 ## Hands-On Practice 3 
 
-1.
+1. Insert new documents to the tgc11-animal_shelter database, in the animals collection
 ```
 db.animals.insertMany([
     {
@@ -242,7 +242,7 @@ db.animals.insertMany([
     }
 ])
 ```
-2.
+2. Changing Carrot's age to 2.5 
 ```
 db.animals.update({
     '_id':ObjectId("602360c38e42018bfd96acf3")
@@ -252,7 +252,7 @@ db.animals.update({
     }
 }) 
 ``` 
-3. Using the PUT method
+3. Update Dash's info Using the PUT method
 ```
 db.animals.update({
     '_id': ObjectId("602360c38e42018bfd96acf2")
@@ -264,7 +264,7 @@ db.animals.update({
 })
 ```
 
-4. Delete Jorden
+4. Delete Jorden data 
 ```
 db.animals.remove({
     '_id':ObjectId("602360c38e42018bfd96acf1")
