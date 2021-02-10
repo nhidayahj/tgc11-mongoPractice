@@ -106,3 +106,111 @@ db.students.remove({
     '_id':ObjectId("602349b28e42018bfd96acec")
 })
 ```
+
+## Manage sub-documents
+
+* Suppose we have a document that looks like this:
+```
+db.animals.insert({
+    'name': 'Cookie',
+    'age': 1,
+    'breed': 'Beagle',
+    'species':'Dog',
+    'tags': [
+        'playful', 'toilet-trained', 'good with cats'
+    ]
+})
+```
+
+### Push to the back of the tags array for Cookie 
+db.animals.update({
+    '_id': ObjectId("6023595e8e42018bfd96aced")
+}, {
+    '$push': {
+        'tags':'good with kids'
+    }
+})
+
+### To remove a certain item from a tag 
+* remove 'good with cats' 
+```
+db.animals.update({
+    '_id': ObjectId("6023595e8e42018bfd96aced")
+}, {
+    '$pull': {
+        'tags': 'good with kids'
+    }
+})
+```
+
+### Updating sub-documents
+* Imagine we add a sub-document into Cookie
+```
+db.animals.update({
+    '_id': ObjectId("6023595e8e42018bfd96aced")
+}, {
+    '$set': {
+        'vet': {
+            'name': 'Dr DoLittle',
+            'contact': 999999998,
+            'address': 'Sunset Way Blk 3 #01-12'
+        }
+    }
+})
+```
+
+* Update DrDolittle to have sirname 'Tan'
+```
+db.animals.update({
+    '_id': ObjectId("6023595e8e42018bfd96aced")
+}, {
+    '$set': {
+        'vet.name': 'Dr Dolittle Tan'
+    }
+})
+```
+
+### Updating a specific Object in an array
+* Assume Cookie has a list of checkups he has attended 
+```
+db.animals.update({
+    '_id': ObjectId('6023595e8e42018bfd96aced')
+}, {
+    '$set': {
+        'checkups': [
+            {
+                '_id': ObjectId(),
+                'diagnosis': 'Inflammation',
+                'treatment': 'Anti-inflammatory'
+            }, 
+            {
+                '_id': ObjectId(),
+                'diagnosis': 'Anxiety',
+                'treatment': 'Anxiety Pills'
+            },
+            {
+                '_id': ObjectId(),
+                'diagnosis': 'Anger Issue',
+                'treatment': 'Constant care'
+            }
+            
+        ]
+    }
+})
+```
+* Update checkup of Anxiety diagnosis and change to depression. 
+
+```
+db.animals.update({
+    'checkups': {
+        '$elemMatch': {
+            '_id': ObjectId("60235c948e42018bfd96acef")
+        }
+    }
+}, {
+    '$set': {
+        'checkups.$.diagnosis': "Separation Anxiety",
+        'checkups.$.treatment': "Anti-depressant"
+    }
+})
+```
