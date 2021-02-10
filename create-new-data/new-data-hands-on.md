@@ -37,7 +37,7 @@ db.students.insertMany([
 ### Update a documet by its ObjectId
 
 #### 'Prestige method' aka PUT method
-* Replaces the entire document, but retain the identity by keeping the old id.
+* Replaces the entire document but retain the identity by keeping the old id.
 ```
 db.students.update({
     '_id':ObjectId("602349b28e42018bfd96aceb"),
@@ -214,5 +214,59 @@ db.animals.update({
         'checkups.$.diagnosis': "Separation Anxiety",
         'checkups.$.treatment': "Anti-depressant"
     }
+})
+```
+
+## Hands-On Practice 3 
+
+1.
+```
+db.animals.insertMany([
+    {
+        'name':'Jorden',
+        'age':15, 
+        'breed': 'Golden Retriever',
+        'species': 'Dog'
+    }, 
+    {
+        'name': 'Dash', 
+        'age': 3,
+        'breed': 'hamster',
+        'species': 'hamster'
+    },
+    {
+        'name': 'Carrot',
+        'age': 1.5,
+        'breed': 'Australian Dwarf',
+        'species': 'rabbit'
+    }
+])
+```
+2.
+```
+db.animals.update({
+    '_id':ObjectId("602360c38e42018bfd96acf3")
+}, {
+    '$set': {
+        'age':2.5 
+    }
+}) 
+``` 
+3. Using the PUT method
+```
+db.animals.update({
+    '_id': ObjectId("602360c38e42018bfd96acf2")
+}, {
+    'name':'Dash',
+    'age': 4.5,
+    'breed':'Winter White',
+    'species':'hamster'
+})
+```
+
+4. Delete Jorden
+```
+db.animals.remove({
+    '_id':ObjectId("602360c38e42018bfd96acf1")
 })
 ```
